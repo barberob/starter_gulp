@@ -1,16 +1,16 @@
 const { src, dest, series, parallel, watch } = require('gulp');
-const gulpSass = require('gulp-sass');
-const sourcemaps = require('gulp-sourcemaps');
-const postcss = require('gulp-postcss');
+const gulpSass     = require('gulp-sass');
+const sourcemaps   = require('gulp-sourcemaps');
+const postcss      = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
-const cssnano = require('cssnano');
-const notify = require('gulp-notify');
-const concat = require('gulp-concat');
-const uglify = require('gulp-uglify');
-const babel = require('gulp-babel');
-const rename = require('gulp-regex-rename');
-const plumber = require('gulp-plumber');
-const unuse = require('postcss-uncss'); //https://github.com/uncss/postcss-uncss
+const cssnano      = require('cssnano');
+const notify       = require('gulp-notify');
+const concat       = require('gulp-concat');
+const uglify       = require('gulp-uglify');
+const babel        = require('gulp-babel');
+const rename       = require('gulp-regex-rename');
+const plumber      = require('gulp-plumber');
+const unuse        = require('postcss-uncss');      //https://github.com/uncss/postcss-uncss
 
 /*
  * SASS$
@@ -45,7 +45,7 @@ function jsConcatMinif() {
 			})
 		)
 		.pipe(concat('app.min.js', { newLine: ';' }))
-// SPECIFIQUE DEV: ne pas compacter le JS
+		// SPECIFIQUE DEV: ne pas compacter le JS
 		//		.pipe(uglify())
 		.pipe(sourcemaps.write('.'))
 		.pipe(dest('./dist/js'));
