@@ -21,14 +21,14 @@ function sass() {
 	};
 	return (
 		src('./src/css/**/*.scss')
-			.pipe(plumber(err => console.error(err.formatted)))
-			.pipe(sourcemaps.init())
-			.pipe(gulpSass.sync({ outputStyle: 'expanded' }))
-			.pipe(postcss([autoprefixer()])) // autoprefixer
-			//		.pipe(postcss([autoprefixer(), cssnano()])) // autoprefixer  +  minifier
-			//		.pipe(postcss([unuse(options_unuse), autoprefixer()])) // css unuse + autoprefixer
-			.pipe(sourcemaps.write('.')) // initialize sourcemaps first
-			.pipe(dest('./dist/css'))
+		.pipe(sourcemaps.init())
+		.pipe(gulpSass.sync({ outputStyle: 'expanded' }))
+		.pipe(postcss([autoprefixer()])) // autoprefixer
+		//		.pipe(postcss([autoprefixer(), cssnano()])) // autoprefixer  +  minifier
+		//		.pipe(postcss([unuse(options_unuse), autoprefixer()])) // css unuse + autoprefixer
+		.pipe(sourcemaps.write('.')) // initialize sourcemaps first
+		.pipe(dest('./dist/css'))
+		.pipe(plumber(err => console.log(err.formatted)))
 	);
 }
 
