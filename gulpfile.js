@@ -9,6 +9,7 @@ const concat = require('gulp-concat');
 const uglify = require('gulp-uglify');
 const babel = require('gulp-babel');
 const rename = require('gulp-regex-rename');
+const plumber = require('gulp-plumber');
 const unuse = require('postcss-uncss'); //https://github.com/uncss/postcss-uncss
 
 /*
@@ -20,9 +21,9 @@ function sass() {
 	};
 	return (
 		src('./src/css/**/*.scss')
+			.pipe(plumber(err => console.error(err.formatted)))
 			.pipe(sourcemaps.init())
-			.pipe(gulpSass({ outputStyle: 'expanded' }))
-			.on('error', err => notify().write(err))
+			.pipe(gulpSass.sync({ outputStyle: 'expanded' }))
 			.pipe(postcss([autoprefixer()])) // autoprefixer
 			//		.pipe(postcss([autoprefixer(), cssnano()])) // autoprefixer  +  minifier
 			//		.pipe(postcss([unuse(options_unuse), autoprefixer()])) // css unuse + autoprefixer
